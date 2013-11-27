@@ -63,7 +63,7 @@ pub fn load_with_depth(path: ~str, force_depth: uint, convert_hdr:bool) -> LoadR
         let mut width   = 0 as c_int;
         let mut height  = 0 as c_int;
         let mut depth   = 0 as c_int;
-        do path.to_c_str().with_ref |bytes| {
+        path.to_c_str().with_ref(|bytes| {
             if !convert_hdr && stbi_is_hdr(bytes)!=0   {
                 let buffer = stbi_loadf(bytes,
                                         to_mut_unsafe_ptr(&mut width),
@@ -87,7 +87,7 @@ pub fn load_with_depth(path: ~str, force_depth: uint, convert_hdr:bool) -> LoadR
                     ImageU8( load_internal(buffer,width,height,depth) )
                 }
             }
-        }
+        })
     }
 }
 
@@ -103,7 +103,7 @@ pub fn load_from_memory_with_depth(buffer: &[u8], force_depth: uint, convert_hdr
         let mut width = 0 as c_int;
         let mut height = 0 as c_int;
         let mut depth = 0 as c_int;
-        do buffer.as_imm_buf |bytes, len| {
+        buffer.as_imm_buf(|bytes, len| {
             if !convert_hdr && stbi_is_hdr_from_memory(bytes, len as c_int) != 0 {
                 let buffer = stbi_loadf_from_memory(bytes,
                                                     len as c_int,
@@ -131,6 +131,6 @@ pub fn load_from_memory_with_depth(buffer: &[u8], force_depth: uint, convert_hdr
                     ImageU8( load_internal(buffer,width,height,actual_depth) )
                 }
             }
-        }
+        })
     }
 }
