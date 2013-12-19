@@ -14,11 +14,11 @@
 use std::libc::*;
 
 type enum_unnamed1 = c_uint;
-static STBI_default: u32 = 0_u32;
-static STBI_grey: u32 = 1_u32;
-static STBI_grey_alpha: u32 = 2_u32;
-static STBI_rgb: u32 = 3_u32;
-static STBI_rgb_alpha: u32 = 4_u32;
+pub static STBI_default: u32 = 0_u32;
+pub static STBI_grey: u32 = 1_u32;
+pub static STBI_grey_alpha: u32 = 2_u32;
+pub static STBI_rgb: u32 = 3_u32;
+pub static STBI_rgb_alpha: u32 = 4_u32;
 
 #[link_args="-L. -lstb-image"]
 #[nolink]
