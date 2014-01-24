@@ -47,7 +47,7 @@ fn load_internal<T>(buf : *T, w : c_int, h : c_int, d : c_int) -> Image<T> {
         // FIXME: Shouldn't copy; instead we should use a sendable resource. They
         // aren't particularly safe yet though.
         let data = from_buf_raw(buf, (w * h * d) as uint);
-        libc::free(buf as *c_void);
+        libc::free(buf as *mut c_void);
         Image::<T>{
             width   : w as uint,
             height  : h as uint,
