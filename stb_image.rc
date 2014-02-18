@@ -12,8 +12,6 @@
 
 #[feature(globs)];
 
-extern mod std;
-
 pub mod stb_image;
 pub mod image;
 
